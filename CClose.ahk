@@ -452,9 +452,9 @@ else ; else send a normal right click
 }
 Return
 
-~LButton::
-CoordMode, Mouse, Screen
-MouseGetPos, xOld, yOld
+~^LButton Up::
+;CoordMode, Mouse, Screen
+;MouseGetPos, xOld, yOld
 WinGet, ExStyle, ExStyle ; get the extended window style
 if (ExStyle & 0x8) ; 0x8 is WS_EX_TOPMOST
 {
@@ -464,14 +464,14 @@ else
 {
 	ExStyle := TEXT_Always_On_Top
 }
-KeyWait, LButton, T1 ; wait for the left mouse button to be released with timeout set to 1 second
-MouseGetPos, xNew, yNew
-if (xOld == xNew && yOld == yNew && ErrorLevel == 1) ; if the mouse did not move during the timeout period
-{
+;KeyWait, LButton, T1 ; wait for the left mouse button to be released with timeout set to 1 second
+;MouseGetPos, xNew, yNew
+;if (xOld == xNew && yOld == yNew && ErrorLevel == 1) ; if the mouse did not move during the timeout period
+;{
 	Winset, Alwaysontop, Toggle, A ; toggle window always on top
 	ToolTip, %ExStyle%, , 0 ; display a tooltip with current topmost status
 	SetTimer, RemoveToolTip, 1000 ; remove the tooltip after 1 second
-}
+;}
 Return
 
 #If, true ; apply the following hotkey with no conditions
